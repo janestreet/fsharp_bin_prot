@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <!-- 2021-04-15: For now, we turn on the ml compatibility flag, as most of this code is copied from ocaml code -->
+    <OtherFlags>--warnaserror+ --warnon:1182,3218 $(OtherFlags)</OtherFlags>
+    <OtherFlags>--mlcompatibility</OtherFlags>
+    <EmbedAllSources>true</EmbedAllSources>
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Buffer.fsi" />
+    <Compile Include="Buffer.fs" />
+    <Compile Include="Common.fsi" />
+    <Compile Include="Common.fs" />
+    <Compile Include="Nat0.fsi" />
+    <Compile Include="Nat0.fs" />
+    <Compile Include="Read.fsi" />
+    <Compile Include="Read.fs" />
+    <Compile Include="Write.fsi" />
+    <Compile Include="Write.fs" />
+    <Compile Include="Size.fsi" />
+    <Compile Include="Size.fs" />
+    <Compile Include="Type_class.fsi" />
+    <Compile Include="Type_class.fs" />
+    <Compile Include="Utils.fsi" />
+    <Compile Include="Utils.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Memory" Version="4.5.4" />
+  </ItemGroup>
+
+  <Target Name="CleanOutputDirs" AfterTargets="Clean">
+    <RemoveDir Directories="$(BaseIntermediateOutputPath)" /><!-- obj -->
+    <RemoveDir Directories="$(BaseOutputPath)" /><!-- bin -->
+  </Target>
+</Project>
