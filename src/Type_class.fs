@@ -26,14 +26,14 @@ module Type_class =
     type ('a, 'b) t = 'a t0 -> 'b t0
 
   module S2 =
-    type ('a, 'b, 'c) writer = 'a writer0 -> ('b, 'c)S1.writer
-    type ('a, 'b, 'c) reader = 'a reader0 -> ('b, 'c)S1.reader
-    type ('a, 'b, 'c) t = 'a t0 -> ('b, 'c)S1.t
+    type ('a, 'b, 'c) writer = 'a writer0 -> S1.writer<'b, 'c>
+    type ('a, 'b, 'c) reader = 'a reader0 -> S1.reader<'b, 'c>
+    type ('a, 'b, 'c) t = 'a t0 -> S1.t<'b, 'c>
 
   module S3 =
-    type ('a, 'b, 'c, 'd) writer = 'a writer0 -> ('b, 'c, 'd)S2.writer
-    type ('a, 'b, 'c, 'd) reader = 'a reader0 -> ('b, 'c, 'd)S2.reader
-    type ('a, 'b, 'c, 'd) t = 'a t0 -> ('b, 'c, 'd)S2.t
+    type ('a, 'b, 'c, 'd) writer = 'a writer0 -> S2.writer<'b, 'c, 'd>
+    type ('a, 'b, 'c, 'd) reader = 'a reader0 -> S2.reader<'b, 'c, 'd>
+    type ('a, 'b, 'c, 'd) t = 'a t0 -> S2.t<'b, 'c, 'd>
 
   let variant_wrong_type name _buf pos_ref _x =
     Common.raise_variant_wrong_type name !pos_ref

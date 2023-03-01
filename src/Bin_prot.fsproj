@@ -2,8 +2,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <!-- 2021-04-15: For now, we turn on the ml compatibility flag, as most of this code is copied from ocaml code -->
-    <OtherFlags>--warnaserror+ --warnon:1182,3218 $(OtherFlags)</OtherFlags>
-    <OtherFlags>--mlcompatibility</OtherFlags>
+    <OtherFlags>--warnaserror+ --warnon:1182,3218 --nowarn:3370 --mlcompatibility$(OtherFlags)</OtherFlags>
     <EmbedAllSources>true</EmbedAllSources>
     <DebugType>embedded</DebugType>
   </PropertyGroup>

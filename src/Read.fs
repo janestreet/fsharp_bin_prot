@@ -11,8 +11,8 @@ module Read =
 
   type 'a reader = buf -> pos_ref -> 'a
   type ('a, 'b) reader1 = 'a reader -> 'b reader
-  type ('a, 'b, 'c) reader2 = 'a reader -> ('b, 'c)reader1
-  type ('a, 'b, 'c, 'd) reader3 = 'a reader -> ('b, 'c, 'd)reader2
+  type ('a, 'b, 'c) reader2 = 'a reader -> reader1<'b, 'c>
+  type ('a, 'b, 'c, 'd) reader3 = 'a reader -> reader2<'b, 'c, 'd>
 
   module Char =
     let code c = int32 c
@@ -300,10 +300,11 @@ module Read =
        int32 (n >>> 1))
 
   let bin_read_int_8bit buf pos_ref =
-    let pos = safe_get_pos buf pos_ref in
+    let pos = safe_get_pos buf pos_ref
     assert_pos pos
     pos_ref := pos + 1
-    let n = buf.Item pos in int32 n
+    let n = buf.Item pos
+    int32 n
 
   let bin_read_int_16bit buf pos_ref =
     let pos = !pos_ref

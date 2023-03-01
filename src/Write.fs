@@ -8,8 +8,8 @@ module Write =
 
   type 'a writer = buf -> pos -> 'a -> pos
   type ('a, 'b) writer1 = 'a writer -> 'b writer
-  type ('a, 'b, 'c) writer2 = 'a writer -> ('b, 'c)writer1
-  type ('a, 'b, 'c, 'd) writer3 = 'a writer -> ('b, 'c, 'd)writer2
+  type ('a, 'b, 'c) writer2 = 'a writer -> writer1<'b, 'c>
+  type ('a, 'b, 'c, 'd) writer3 = 'a writer -> writer2<'b, 'c, 'd>
 
   (*$ open Bin_prot_cinaps $*)
 
@@ -60,7 +60,7 @@ module Write =
     let next = pos + 2 in
     check_next buf next
     buf.Set pos code_NEG_INT8
-    buf.Set(pos + 1) (byte n)
+    buf.Set (pos + 1) (byte n)
     next
 
   let all_bin_write_int16 buf pos (n : int64) =

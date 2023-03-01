@@ -27,14 +27,14 @@ module Type_class =
     type ('a, 'b) t = 'a t0 -> 'b t0
 
   module S2 =
-    type ('a, 'b, 'c) writer = 'a writer0 -> ('b, 'c)S1.writer
-    type ('a, 'b, 'c) reader = 'a reader0 -> ('b, 'c)S1.reader
-    type ('a, 'b, 'c) t = 'a t0 -> ('b, 'c)S1.t
+    type ('a, 'b, 'c) writer = 'a writer0 -> S1.writer<'b, 'c>
+    type ('a, 'b, 'c) reader = 'a reader0 -> S1.reader<'b, 'c>
+    type ('a, 'b, 'c) t = 'a t0 -> S1.t<'b, 'c>
 
   module S3 =
-    type ('a, 'b, 'c, 'd) writer = 'a writer0 -> ('b, 'c, 'd)S2.writer
-    type ('a, 'b, 'c, 'd) reader = 'a reader0 -> ('b, 'c, 'd)S2.reader
-    type ('a, 'b, 'c, 'd) t = 'a t0 -> ('b, 'c, 'd)S2.t
+    type ('a, 'b, 'c, 'd) writer = 'a writer0 -> S2.writer<'b, 'c, 'd>
+    type ('a, 'b, 'c, 'd) reader = 'a reader0 -> S2.reader<'b, 'c, 'd>
+    type ('a, 'b, 'c, 'd) t = 'a t0 -> S2.t<'b, 'c, 'd>
 
   (*$ open Bin_prot_cinaps.Sig *)
   (*$ mk_base "unit" *)
@@ -78,38 +78,38 @@ module Type_class =
   val bin_nat0 : Nat0.t t
 
   (*$ mk_base1 "ref" *)
-  val bin_writer_ref : ('a, 'a ref)S1.writer
-  val bin_reader_ref : ('a, 'a ref)S1.reader
-  val bin_ref : ('a, 'a ref)S1.t
+  val bin_writer_ref : S1.writer<'a, 'a ref>
+  val bin_reader_ref : S1.reader<'a, 'a ref>
+  val bin_ref : S1.t<'a, 'a ref>
 
   (*$ mk_base1_tp "lazy" "lazy_t" *)
-  val bin_writer_lazy : ('a, 'a Lazy)S1.writer
-  val bin_reader_lazy : ('a, 'a Lazy)S1.reader
-  val bin_lazy : ('a, 'a Lazy)S1.t
+  val bin_writer_lazy : S1.writer<'a, 'a Lazy>
+  val bin_reader_lazy : S1.reader<'a, 'a Lazy>
+  val bin_lazy : S1.t<'a, 'a Lazy>
 
   (*$ mk_base1 "option" *)
-  val bin_writer_option : ('a, 'a option)S1.writer
-  val bin_reader_option : ('a, 'a option)S1.reader
-  val bin_option : ('a, 'a option)S1.t
+  val bin_writer_option : S1.writer<'a, 'a option>
+  val bin_reader_option : S1.reader<'a, 'a option>
+  val bin_option : S1.t<'a, 'a option>
 
   (*$*)
 
-  val bin_writer_pair : ('a, 'b, 'a * 'b)S2.writer
-  val bin_reader_pair : ('a, 'b, 'a * 'b)S2.reader
-  val bin_pair : ('a, 'b, 'a * 'b)S2.t
-  val bin_writer_triple : ('a, 'b, 'c, 'a * 'b * 'c)S3.writer
-  val bin_reader_triple : ('a, 'b, 'c, 'a * 'b * 'c)S3.reader
-  val bin_triple : ('a, 'b, 'c, 'a * 'b * 'c)S3.t
+  val bin_writer_pair : S2.writer<'a, 'b, 'a * 'b>
+  val bin_reader_pair : S2.reader<'a, 'b, 'a * 'b>
+  val bin_pair : S2.t<'a, 'b, 'a * 'b>
+  val bin_writer_triple : S3.writer<'a, 'b, 'c, 'a * 'b * 'c>
+  val bin_reader_triple : S3.reader<'a, 'b, 'c, 'a * 'b * 'c>
+  val bin_triple : S3.t<'a, 'b, 'c, 'a * 'b * 'c>
 
   (*$ mk_base1 "list" *)
-  val bin_writer_list : ('a, 'a list)S1.writer
-  val bin_reader_list : ('a, 'a list)S1.reader
-  val bin_list : ('a, 'a list)S1.t
+  val bin_writer_list : S1.writer<'a, 'a list>
+  val bin_reader_list : S1.reader<'a, 'a list>
+  val bin_list : S1.t<'a, 'a list>
 
   (*$ mk_base1 "array" *)
-  val bin_writer_array : ('a, 'a array)S1.writer
-  val bin_reader_array : ('a, 'a array)S1.reader
-  val bin_array : ('a, 'a array)S1.t
+  val bin_writer_array : S1.writer<'a, 'a array>
+  val bin_reader_array : S1.reader<'a, 'a array>
+  val bin_array : S1.t<'a, 'a array>
 
   (*$*)
 

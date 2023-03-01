@@ -7,8 +7,8 @@ module Size =
 
   type 'a sizer = 'a -> int
   type ('a, 'b) sizer1 = 'a sizer -> 'b sizer
-  type ('a, 'b, 'c) sizer2 = 'a sizer -> ('b, 'c)sizer1
-  type ('a, 'b, 'c, 'd) sizer3 = 'a sizer -> ('b, 'c, 'd)sizer2
+  type ('a, 'b, 'c) sizer2 = 'a sizer -> sizer1<'b, 'c>
+  type ('a, 'b, 'c, 'd) sizer3 = 'a sizer -> sizer2<'b, 'c, 'd>
 
   val bin_size_unit : unit sizer
   val bin_size_bool : bool sizer
@@ -18,13 +18,13 @@ module Size =
   val bin_size_float : float sizer
   val bin_size_int32 : int32 sizer
   val bin_size_nat0 : Nat0.t sizer
-  val bin_size_ref : ('a, 'a ref)sizer1
-  val bin_size_lazy_t : ('a, 'a Lazy)sizer1
-  val bin_size_option : ('a, 'a option)sizer1
-  val bin_size_pair : ('a, 'b, 'a * 'b)sizer2
-  val bin_size_triple : ('a, 'b, 'c, 'a * 'b * 'c)sizer3
-  val bin_size_list : ('a, 'a list)sizer1
-  val bin_size_array : ('a, 'a array)sizer1
+  val bin_size_ref : sizer1<'a, 'a ref>
+  val bin_size_lazy_t : sizer1<'a, 'a Lazy>
+  val bin_size_option : sizer1<'a, 'a option>
+  val bin_size_pair : sizer2<'a, 'b, 'a * 'b>
+  val bin_size_triple : sizer3<'a, 'b, 'c, 'a * 'b * 'c>
+  val bin_size_list : sizer1<'a, 'a list>
+  val bin_size_array : sizer1<'a, 'a array>
   val bin_size_variant_int : int sizer
 
   (** 8 and 16 bit use int32 as they're used for variant constructor id in OCaml

@@ -53,8 +53,8 @@ module Size =
 
   type 'a sizer = 'a -> int
   type ('a, 'b) sizer1 = 'a sizer -> 'b sizer
-  type ('a, 'b, 'c) sizer2 = 'a sizer -> ('b, 'c)sizer1
-  type ('a, 'b, 'c, 'd) sizer3 = 'a sizer -> ('b, 'c, 'd)sizer2
+  type ('a, 'b, 'c) sizer2 = 'a sizer -> sizer1<'b, 'c>
+  type ('a, 'b, 'c, 'd) sizer3 = 'a sizer -> sizer2<'b, 'c, 'd>
 
   let bin_size_unit () = 1
   let bin_size_bool (_ : bool) = 1

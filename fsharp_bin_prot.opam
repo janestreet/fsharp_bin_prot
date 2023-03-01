@@ -13,6 +13,7 @@ depends: [
   "ocaml" {>= "4.08.0"}
   "dune" {>= "2.0.0"}
 ]
+available: arch != "arm32" & arch != "x86_32"
 synopsis: "Reimplementation of our bin_prot library in F#"
 description: "
 This library reimplements bin_prot, and is used in our F# reimplementation of async_rpc to allow for rpcs between OCaml and F#.

@@ -11,8 +11,8 @@ module Write =
   type 'a writer = buf -> pos -> 'a -> pos
 
   type ('a, 'b) writer1 = 'a writer -> 'b writer
-  type ('a, 'b, 'c) writer2 = 'a writer -> ('b, 'c)writer1
-  type ('a, 'b, 'c, 'd) writer3 = 'a writer -> ('b, 'c, 'd)writer2
+  type ('a, 'b, 'c) writer2 = 'a writer -> writer1<'b, 'c>
+  type ('a, 'b, 'c, 'd) writer3 = 'a writer -> writer2<'b, 'c, 'd>
 
   val bin_write_unit : unit writer
   val bin_write_bool : bool writer
@@ -22,13 +22,13 @@ module Write =
   val bin_write_nat0 : Nat0.t writer
   val bin_write_float : float writer
   val bin_write_int32 : int32 writer
-  val bin_write_ref : ('a, 'a ref)writer1
-  val bin_write_lazy : ('a, 'a Lazy)writer1
-  val bin_write_option : ('a, 'a option)writer1
-  val bin_write_pair : ('a, 'b, 'a * 'b)writer2
-  val bin_write_triple : ('a, 'b, 'c, 'a * 'b * 'c)writer3
-  val bin_write_list : ('a, 'a list)writer1
-  val bin_write_array : ('a, 'a array)writer1
+  val bin_write_ref : writer1<'a, 'a ref>
+  val bin_write_lazy : writer1<'a, 'a Lazy>
+  val bin_write_option : writer1<'a, 'a option>
+  val bin_write_pair : writer2<'a, 'b, 'a * 'b>
+  val bin_write_triple : writer3<'a, 'b, 'c, 'a * 'b * 'c>
+  val bin_write_list : writer1<'a, 'a list>
+  val bin_write_array : writer1<'a, 'a array>
 
   (** [bin_write_variant_int] writes out the exact little-endian bit
       representation of the variant tag of the given value (= 32 bits). *)
