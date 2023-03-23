@@ -24,7 +24,8 @@ module Read =
   val bin_read_float : float reader
   val bin_read_int32 : int32 reader
   val bin_read_ref : reader1<'a, 'a ref>
-  val bin_read_lazy : reader1<'a, 'a Lazy>
+  (** Note that Lazy is capitalized, as there is no [lazy] in F# (it is [Lazy]) *)
+  val bin_read_Lazy : reader1<'a, 'a Lazy>
   val bin_read_option : reader1<'a, 'a option>
   val bin_read_pair : reader2<'a, 'b, 'a * 'b>
   val bin_read_triple : reader3<'a, 'b, 'c, 'a * 'b * 'c>
@@ -56,7 +57,7 @@ module Read =
   val __bin_read_int32__ : (int -> int32) reader
   val __bin_read_int64__ : (int -> int64) reader
   val __bin_read_ref__ : reader1<'a, int -> 'a ref>
-  val __bin_read_lazy__ : reader1<'a, int -> 'a Lazy>
+  val __bin_read_Lazy__ : reader1<'a, int -> 'a Lazy>
   val __bin_read_option__ : reader1<'a, int -> 'a option>
   val __bin_read_list__ : reader1<'a, int -> 'a list>
   val __bin_read_array__ : reader1<'a, int -> 'a array>

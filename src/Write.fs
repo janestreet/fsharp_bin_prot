@@ -146,7 +146,7 @@ module Write =
 
   let bin_write_ref (bin_write_el : 'a writer) buf pos r = bin_write_el buf pos !r
 
-  let bin_write_lazy (bin_write_el : 'a writer) buf pos (lv : 'a Lazy) =
+  let bin_write_Lazy (bin_write_el : 'a writer) buf pos (lv : 'a Lazy) =
     let v = lv.Force() in bin_write_el buf pos v
 
   let bin_write_option (bin_write_el : 'a writer) buf pos =

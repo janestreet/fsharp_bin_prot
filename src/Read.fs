@@ -209,7 +209,7 @@ module Read =
   let bin_read_ref (bin_read_el : 'a reader) buf pos_ref =
     let el = bin_read_el buf pos_ref in ref el
 
-  let bin_read_lazy (bin_read_el : 'a reader) buf pos_ref =
+  let bin_read_Lazy (bin_read_el : 'a reader) buf pos_ref =
     let el = bin_read_el buf pos_ref in lazy (el)
 
   let bin_read_option (bin_read_el : 'a reader) buf pos_ref =
@@ -412,13 +412,13 @@ module Read =
     Common.raise_variant_wrong_type "lazy" !pos_ref
 
 
-  let __bin_read_lazy__
+  let __bin_read_Lazy__
     (_f : 'a reader)
     (_buf : buf)
     (pos_ref : pos_ref)
     (_vint : int)
     : 'a Lazy =
-    Common.raise_variant_wrong_type "lazy" !pos_ref
+    Common.raise_variant_wrong_type "Lazy" !pos_ref
 
 
   let __bin_read_option__

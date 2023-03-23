@@ -19,7 +19,8 @@ module Size =
   val bin_size_int32 : int32 sizer
   val bin_size_nat0 : Nat0.t sizer
   val bin_size_ref : sizer1<'a, 'a ref>
-  val bin_size_lazy_t : sizer1<'a, 'a Lazy>
+  (** Note that Lazy is capitalized, as there is no [lazy] in F# (it is [Lazy]) *)
+  val bin_size_Lazy : sizer1<'a, 'a Lazy>
   val bin_size_option : sizer1<'a, 'a option>
   val bin_size_pair : sizer2<'a, 'b, 'a * 'b>
   val bin_size_triple : sizer3<'a, 'b, 'c, 'a * 'b * 'c>
@@ -69,7 +70,7 @@ module Size =
     val bin_size_int32 : int
     val bin_size_nat0 : int
     val bin_size_ref : int
-    val bin_size_lazy_t : int
+    val bin_size_Lazy : int
     val bin_size_option : int
     val bin_size_pair : int
     val bin_size_triple : int

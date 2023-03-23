@@ -156,18 +156,18 @@ module Type_class =
     { writer = bin_writer_ref bin_el.writer
       reader = bin_reader_ref bin_el.reader }
 
-  (*$ mk_base1 "lazy" *)
-  let bin_writer_lazy (bin_writer_el : 'a writer) =
-    { size = (fun (v : 'a Lazy) -> Size.bin_size_lazy_t bin_writer_el.size v)
-      write = (fun buf pos v -> Write.bin_write_lazy bin_writer_el.write buf pos v) }
+  (*$ mk_base1 "Lazy" *)
+  let bin_writer_Lazy (bin_writer_el : 'a writer) =
+    { size = (fun (v : 'a Lazy) -> Size.bin_size_Lazy bin_writer_el.size v)
+      write = (fun buf pos v -> Write.bin_write_Lazy bin_writer_el.write buf pos v) }
 
-  let bin_reader_lazy bin_reader_el =
-    { read = (fun buf pos_ref -> Read.bin_read_lazy bin_reader_el.read buf pos_ref)
-      vtag_read = variant_wrong_type "lazy" }
+  let bin_reader_Lazy bin_reader_el =
+    { read = (fun buf pos_ref -> Read.bin_read_Lazy bin_reader_el.read buf pos_ref)
+      vtag_read = variant_wrong_type "Lazy" }
 
-  let bin_lazy bin_el =
-    { writer = bin_writer_lazy bin_el.writer
-      reader = bin_reader_lazy bin_el.reader }
+  let bin_Lazy bin_el =
+    { writer = bin_writer_Lazy bin_el.writer
+      reader = bin_reader_Lazy bin_el.reader }
 
   (*$ mk_base1 "option" *)
   let bin_writer_option bin_writer_el =

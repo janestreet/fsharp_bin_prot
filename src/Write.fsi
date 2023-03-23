@@ -23,7 +23,8 @@ module Write =
   val bin_write_float : float writer
   val bin_write_int32 : int32 writer
   val bin_write_ref : writer1<'a, 'a ref>
-  val bin_write_lazy : writer1<'a, 'a Lazy>
+  (** Note that Lazy is capitalized, as there is no [lazy] in F# (it is [Lazy]) *)
+  val bin_write_Lazy : writer1<'a, 'a Lazy>
   val bin_write_option : writer1<'a, 'a option>
   val bin_write_pair : writer2<'a, 'b, 'a * 'b>
   val bin_write_triple : writer3<'a, 'b, 'c, 'a * 'b * 'c>

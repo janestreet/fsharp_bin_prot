@@ -82,10 +82,10 @@ module Type_class =
   val bin_reader_ref : S1.reader<'a, 'a ref>
   val bin_ref : S1.t<'a, 'a ref>
 
-  (*$ mk_base1_tp "lazy" "lazy_t" *)
-  val bin_writer_lazy : S1.writer<'a, 'a Lazy>
-  val bin_reader_lazy : S1.reader<'a, 'a Lazy>
-  val bin_lazy : S1.t<'a, 'a Lazy>
+  (*$ mk_base1_tp "Lazy" "lazy_t" *)
+  val bin_writer_Lazy : S1.writer<'a, 'a Lazy>
+  val bin_reader_Lazy : S1.reader<'a, 'a Lazy>
+  val bin_Lazy : S1.t<'a, 'a Lazy>
 
   (*$ mk_base1 "option" *)
   val bin_writer_option : S1.writer<'a, 'a option>

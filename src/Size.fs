@@ -34,7 +34,7 @@ module Size =
     let bin_size_int32 = bin_size_int64
     let bin_size_nat0 = 1
     let bin_size_ref = 1
-    let bin_size_lazy_t = 1
+    let bin_size_Lazy = 1
     let bin_size_option = 1
     let bin_size_pair = 1 + 1
     let bin_size_triple = 1 + 1 + 1
@@ -115,7 +115,7 @@ module Size =
   let bin_size_int32 (n : int32) = bin_size_int64 (int64 n)
 
   let bin_size_ref (bin_size_el : 'a sizer) r = bin_size_el !r
-  let bin_size_lazy_t (bin_size_el : 'a sizer) (lv : Lazy<'a>) = bin_size_el (lv.Force())
+  let bin_size_Lazy (bin_size_el : 'a sizer) (lv : Lazy<'a>) = bin_size_el (lv.Force())
 
   let bin_size_option bin_size_el =
     function
